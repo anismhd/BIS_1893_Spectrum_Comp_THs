@@ -1,0 +1,38 @@
+<Description>
+   ABAQUS/ABQcaeK rank 0 received the ABORT signal
+
+</Description>
+
+<Context>
+   CAE
+</Context>
+
+<Callstack>
+</Callstack>
+
+<Memory>
+   <Current>            0 GB </Current>
+   <Resident>           0 GB </Resident>
+   <Physical>         382 GB </Physical>
+   <Limit>              0 GB </Limit>
+   <Accessible>       382 GB </Accessible>
+   <Available>        371 GB </Available>
+   <Allocator>            DL </Allocator>
+</Memory>
+
+<Swap>
+       <Size>         422 GB </Size>
+       <Used>          13 GB </Used>
+       <Free>         409 GB </Free>
+</Swap>
+
+<Directories>
+  <current> E:\CVR_BidirAnalysis           </current> <free>    397 GB </free>   <used>   1465 GB </used> 
+     <temp> C:\Users\Admin\AppData\Local\Temp </temp>    <free>     41 GB </free>
+</Directories>
+
+<Installation>
+     <Version> 2023 2023 </Version>
+       <Build> 2022_09_28-23.41.55 183150 </Build>
+</Installation>
+

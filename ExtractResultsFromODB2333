@@ -1,0 +1,68 @@
+import numpy as np
+import glob 
+import pickle
+
+main_dir = "E:\\CVR_BidirAnalysis\\"
+loadstep = "Step-2"
+
+# Abaqus Classes
+from odbAccess import *
+from abaqusConstants import *
+IS_Nodes = [22,21,20,19,18,17,15,16]
+IC_Nodes = [34,33,32,31,30,29,28,27,26,25,23,24]
+IS_Elem = [72,71,70,69,68,67,66]
+IC_Elem = [83,82,81,80,79,78,77,76,75,74,73]
+SF3x = {}
+SF3y = {}
+Ax = {}
+odb_files = glob.glob(main_dir+"AbaqusInpFiles\\*.odb")
+odb_files = ['AbaqusInpFiles\\RSN164.odb','AbaqusInpFiles\\RSN4013.odb','AbaqusInpFiles\\RSN4841.odb',\
+			'AbaqusInpFiles\\RSN4843.odb','AbaqusInpFiles\\RSN57.odb','AbaqusInpFiles\\RSN70.odb',\
+			'AbaqusInpFiles\\RSN830.odb','AbaqusInpFiles\\RSN88.odb']
+for i,odb_in in enumerate(odb_files):
+	print("({0:d}/{1:d})-{2:s}".format(i+1,len(odb_files),odb_in))
+	acc_id = odb_in.split('\\')[-1][:-4]
+	odb = openOdb(path=main_dir+odb_in, readOnly=True)
+	SF3x[acc_id] = {}
+	SF3y[acc_id] = {}
+	Ax[acc_id] = {}
+	time = []
+	for frame in odb.steps[loadstep].frames:
+		SF = frame.fieldOutputs['SF']
+		ACC = frame.fieldOutputs['A']
+		time.append(frame.frameValue)
+		for j in range(len(SF.values)):
+			if SF.values[j].elementLabel in IS_Elem+IC_Elem:
+				if SF.values[j].elementLabel in SF3x[acc_id].keys():
+					SF3x[acc_id][SF.values[j].elementLabel].append(\
+						SF.values[j].data[2])
+					SF3y[acc_id][SF.values[j].elementLabel].append(\
+						SF.values[j].data[1])
+				else:
+					SF3x[acc_id][SF.values[j].elementLabel] = \
+						[SF.values[j].data[2]]
+					SF3y[acc_id][SF.values[j].elementLabel] = \
+						[SF.values[j].data[1]]
+	odb.close()
+	SF3x_fname = open("{0:s}_SF3x.csv".format(acc_id),'w')
+	SF3y_fname = open("{0:s}_SF3y.csv".format(acc_id),'w')
+	Ax_fname = open("{0:s}_Ax.csv".format(acc_id), "w")
+	time_str = "0"
+	for val in time:
+		time_str = time_str+ ",{0:f}".format(val)
+	SF3x_fname.write(time_str+'\n')
+	SF3y_fname.write(time_str+'\n')
+	Ax_fname.write(time_str+'\n')
+	for eid,th in SF3x[acc_id].items():
+		list_str = ""
+		for val in th:
+			list_str = list_str+ ",{0:f}".format(val)
+		SF3x_fname.write("{0:d}{1:s}\n".format(eid,list_str))
+	for eid,th in SF3y[acc_id].items():
+		list_str = ""
+		for val in th:
+			list_str = list_str+ ",{0:f}".format(val)
+		SF3y_fname.write("{0:d}{1:s}\n".format(eid,list_str))
+	SF3x_fname.close()
+	SF3y_fname.close()
+	Ax_fname.close()
