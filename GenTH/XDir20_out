@@ -1,0 +1,94 @@
+
+
+          **********************************************************
+          *                                                        *
+          *                  A C S   S  A  S  S  I                 *
+          *                                                        *
+          *                 Commercial Version 4.0                 *
+          *                     EQUAKE Module                      *
+          *                                                        *
+          *  AN ADVANCED COMPUTATIONAL SOFTWARE FOR 3D STRUCTURAL  *
+          *     ANALYSIS INCLUDING SOIL-STRUCTURE INTERACTION      *
+          *                                                        *
+          *   .........EARTHQUAKE INPUT MOTION GENERATION.......   *
+          *                                                        *
+          *          GHIOCEL PREDICTIVE TECHNOLOGIES, INC.         *
+          *        4 SOUTH MAIN ST.,PITTSFORD, NEW YORK 14534      *
+          *          Phone:(585)641-0379/FAX:(585)586-4672         *
+          *             Email:acs.sassi@ghiocel-tech.com           *
+          *                Attn: Dr. Dan M. Ghiocel                *
+          *                                                        *
+          *                 June 2021 Rev 2                        *
+          **********************************************************
+
+
+    INPUT FILE NAME: XDir20.equ                                                                                                              
+
+      Input Data:
+   ====================================================
+       Number of acceleration orientation =    1
+       Correlation control identification =    0
+       Recorded acceleration control ID   =    0
+       Target PSD input or not control ID =    0
+ 
+       File Names Defined Design Response Data :
+    ====================================================
+       H:\CVR_BidirAnalysis\GenTH\xdir_strR2.RS                                                                                
+ 
+       File Names that Save Response Data of New Acc.:
+    ====================================================
+       xdir_20sec.RSO                                                                                                          
+ 
+       File Names that Save generated Acc. Data :
+    ====================================================
+       xdir_20sec.acc                                                                                                          
+
+      Random seed                   =     12521.0
+      Number of random seeds to try =         0
+ 
+
+      Title = xdir_20sec                                                                      
+
+      NO.OF FREQ. DESIGN RS =        301
+      DAMPING RATIO         =      0.050
+      Gravity Acceleration  =      9.810
+      TOTAL DURATION (SEC.) =      17.00
+      TIME STEP             =     0.0050
+
+
+      *** Working on Spectrum Number =  1
+      =====================================
+
+      *** READING GROUND RS NO.     1, FROM FILE > H:\CVR_BidirAnalysis\GenTH\xdir_strR2.RS
+      *** SAVING COMPUTED RS NO.    1,  ON  FILE > xdir_20sec.RSO
+      *** SAVING ACCELERATION NO.   1,  ON  FILE > xdir_20sec.acc
+
+      *** Warning: 
+         The 1st Freq. of DRS is 0.100, less than 0.2 Hz.
+         It may cause hard convergence. If possible, set the DRS from 0.2Hz. 
+
+      xdir_20sec, Match to Design RS file = H:\CVR_BidirAnalysis\GenTH\xdir_strR2.RS
+
+      Is it convergent ? = YES
+
+      S.M. Duration(s) =        7.745
+      PGA (g)          =        0.221
+      PGV (cm/s)       =       17.714
+      PGD (cm)         =        7.462
+      PGV/PGA (cm/s/g) =       80.236
+      PGA*PGD/PGV^2    =        1.570
+
+      * Computed RS File         > xdir_20sec.RSO *
+      * Generated Accel. File    > xdir_20sec.acc *
+      * Corresponding Velo. File > xdir_20sec.vel *
+      * Corresponding Disp. File > xdir_20sec.dis *
+
+    *** Checking PSD ***
+    =====================
+
+      *** Spectrum Number =   1
+        * Computed PSD File  [cm^2/sec^3] > xdir_20sec.psd *
+        * Computed One Sided FFT File [g] > xdir_20sec.fft *
+
+    *** The task is done ! ***
+
